@@ -12,7 +12,7 @@ jobs:
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - export DOCKER_REPO=$DOCKER_USERNAME/apache
       - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
-      - docker build -f Dockerfile.ubuntu-1804 -t apache-ubuntu-bionic .
+      - docker build -f Dockerfile.ubuntu-1804 -t $REPO:$COMMIT .
       - docker images # remove this line
       - docker tag apache-ubuntu-bionic $DOCKER_USERNAME/apache-ubuntu-bionic
       - docker images # remove this line
