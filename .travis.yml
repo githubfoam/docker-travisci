@@ -9,7 +9,7 @@ jobs:
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - docker build -t apache-ubuntu-bionic .
       - docker images
-      - docker tag travis-ci-build-stages-demo $DOCKER_USERNAME/apache-ubuntu-bionic
+      - docker tag apache-ubuntu-bionic $DOCKER_USERNAME/apache-ubuntu-bionic
       - docker push $DOCKER_USERNAME/apache-ubuntu-bionic
     - stage: Test githubfoam.apache2
       script:
