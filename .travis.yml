@@ -1,12 +1,13 @@
 ---
-services: docker
+sudo: true
+dist: trusty
 
-env:
-  - distro: ubuntu1804
-  - distro: ubuntu1604
-  - distro: ubuntu1404
-  - distro: ubuntu1204
-
-script:
-  # Configure test script so we can run extra tests after playbook is run.
-  - docker pull hello-world
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker build -t travis-ci-build-stages-demo .
+      - docker images
+      - docker tag travis-ci-build-stages-demo $DOCKER_USERNAME/travis-ci-build-stages-demo
+      - docker push $DOCKER_USERNAME/travis-ci-build-stages-demo
