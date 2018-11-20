@@ -11,3 +11,8 @@ jobs:
       - docker images
       - docker tag travis-ci-build-stages-demo $DOCKER_USERNAME/travis-ci-build-stages-demo
       - docker push $DOCKER_USERNAME/travis-ci-build-stages-demo
+    - stage: Test role
+      script: docker run --rm $DOCKER_USERNAME/travis-ci-build-stages-demo ansible-playbook  install githubfoam.ansible_role_apache2
+notifications:
+  email: false
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
