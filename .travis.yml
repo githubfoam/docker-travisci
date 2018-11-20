@@ -7,14 +7,14 @@ jobs:
     - stage: build docker image
       script:
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build -t travis-ci-build-stages-demo .
+      - docker build -t apache-ubuntu-bionic .
       - docker images
-      - docker tag travis-ci-build-stages-demo $DOCKER_USERNAME/travis-ci-build-stages-demo
-      - docker push $DOCKER_USERNAME/travis-ci-build-stages-demo
+      - docker tag travis-ci-build-stages-demo $DOCKER_USERNAME/apache-ubuntu-bionic
+      - docker push $DOCKER_USERNAME/apache-ubuntu-bionic
     - stage: Test githubfoam.apache2
       script:
-      - docker run --rm $DOCKER_USERNAME/travis-ci-build-stages-demo ansible --version
-      - docker run --rm $DOCKER_USERNAME/travis-ci-build-stages-demo ansible-galaxy install githubfoam.apache
+      - docker run --rm $DOCKER_USERNAME/apache-ubuntu-bionic ansible --version
+      - docker run --rm $DOCKER_USERNAME/apache-ubuntu-bionic ansible-galaxy install githubfoam.apache
 notifications:
   email: false
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
