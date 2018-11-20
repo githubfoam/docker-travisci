@@ -8,5 +8,4 @@ env:
   - distro: ubuntu1204
 
 script:
-  # Configure test script so we can run extra tests after playbook is run.
-  - docker pull hello-world
+    - docker pull hello-world
