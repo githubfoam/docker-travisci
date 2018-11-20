@@ -16,7 +16,7 @@ jobs:
       - docker tag $DOCKER_REPO:$COMMIT $DOCKER_REPO:$TAG
       - docker tag $DOCKER_REPO:$COMMIT $DOCKER_REPO:travis-$TRAVIS_BUILD_NUMBER
       - docker push $DOCKER_REPO
-    - stage: test githubfoam.apache2
+    - stage: test ansible role githubfoam.apache
       script:
       - docker run --rm $DOCKER_USERNAME/apache-ubuntu-bionic ansible-galaxy install githubfoam.apache
 notifications:
