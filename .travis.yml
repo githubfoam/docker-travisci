@@ -1,24 +1,13 @@
 ---
-sudo: true
-dist: trusty
-env:
-  global:
-    - COMMIT=${TRAVIS_COMMIT::8}
+services: docker
 
-jobs:
-  include:
-    - stage: build docker image
-      script:
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - export DOCKER_REPO=$DOCKER_USERNAME/apache
-      - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
-      - docker build -f Dockerfile.ubuntu-1804 -t $DOCKER_REPO:$COMMIT .
-      - docker tag $DOCKER_REPO:$COMMIT $DOCKER_REPO:$TAG
-      - docker tag $DOCKER_REPO:$COMMIT $DOCKER_REPO:travis-$TRAVIS_BUILD_NUMBER
-      - docker push $DOCKER_REPO
-    - stage: test ansible role githubfoam.apache
-      script:
-      - docker run --rm $DOCKER_USERNAME/apache-ubuntu-bionic ansible-galaxy install githubfoam.apache
-notifications:
-  email: false
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+env:
+  - distro: ubuntu1904
+  - distro: ubuntu1810
+  - distro: ubuntu1804
+  - distro: ubuntu1604
+  - distro: ubuntu1404
+  - distro: ubuntu1204
+
+script:
+    - docker pull hello-world
