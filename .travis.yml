@@ -13,4 +13,4 @@ script:
     - docker run -it centos8:ping-v1 -c 2 www.google.com
     - docker build --build-arg OS_IMAGE=ubuntu:19.04 -t ubuntu:ping-v2 --file custom.dockerfile .
     - docker images
-    - docker run -it centos8:ping-v2 -c 2 www.google.com
+    - docker run -it ubuntu:ping-v2 -c 2 www.google.com
