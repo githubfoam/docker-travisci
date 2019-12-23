@@ -2,6 +2,7 @@
 services: docker
 
 env:
+  - distro: centos74
   - distro: ubuntu1904
   - distro: ubuntu1810
   - distro: ubuntu1804
