@@ -4,17 +4,10 @@ language: ruby
 services: docker
 
 env:
-  - distro: centos80
-  - distro: centos77
-  - distro: centos76
-  - distro: centos75
-  - distro: centos74
-  - distro: ubuntu1904
-  - distro: ubuntu1810
-  - distro: ubuntu1804
-  - distro: ubuntu1604
-  - distro: ubuntu1404
-  - distro: ubuntu1204
+  - distro: "ubuntu:18.04"
+  - distro: "centos:8"
 
 script:
-    - docker pull hello-world
+    - docker build --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 --file custom.dockerfile .
+    - docker images
+    - docker run -it centos8:ping-v1 -c 2 www.google.com
