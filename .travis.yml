@@ -11,6 +11,6 @@ script:
     - docker build --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 --file custom.dockerfile .
     - docker images
     - docker run -it centos8:ping-v1 -c 2 www.google.com
-    - docker build --build-arg OS_IMAGE=distro -t ubuntu:ping-v2 --file custom.dockerfile .
+    - docker build --build-arg OS_IMAGE=ubuntu:19.04 -t ubuntu:ping-v2 --file custom.dockerfile .
     - docker images
     - docker run -it centos8:ping-v2 -c 2 www.google.com
