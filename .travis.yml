@@ -2,6 +2,8 @@
 services: docker
 
 env:
+  - distro: ubuntu1904
+  - distro: ubuntu1810
   - distro: ubuntu1804
   - distro: ubuntu1604
   - distro: ubuntu1404
