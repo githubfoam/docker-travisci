@@ -4,6 +4,7 @@ language: ruby
 services: docker
 
 env:
+  - distro: centos80
   - distro: centos77
   - distro: centos76
   - distro: centos75
