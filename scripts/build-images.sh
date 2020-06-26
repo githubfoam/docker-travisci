@@ -11,16 +11,19 @@ export DOCKER_IMAGE="testimage"
 export DOCKER_REPO="testrepo"
 
 echo "=============================build============================================================="
-docker build --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 . --file $DOCKERDIR/custom.dockerfile
-docker build --build-arg OS_IMAGE=ubuntu:16.04 -t ubuntu1604:ping-v1 . --file $DOCKERDIR/custom.dockerfile
-docker images
-docker run -it centos8:ping-v1 -c 2 www.google.com
+docker images ls
 
-echo "=============================push============================================================="
-docker build -t fabric2:bionic . --file $DOCKERDIR/$DOCKERDIR
+# docker build --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 . --file $DOCKERDIR/custom.dockerfile
+# docker build --build-arg OS_IMAGE=ubuntu:16.04 -t ubuntu1604:ping-v1 . --file $DOCKERDIR/custom.dockerfile
+# docker run -it centos8:ping-v1 -c 2 www.google.com
+# docker build -t fabric2:bionic . --file $DOCKERDIR/$DOCKERDIR
 # sudo docker build -t fabric2:bionic . --file $DOCKERDIR/Dockerfile.fabric2
-docker image ls
+docker build -t ubuntu1804:ansible . --file $DOCKERDIR/$DOCKERDIR
 docker build -t $DOCKER_IMAGE:$TRAVIS_COMMIT . --file=Dockerfile.nginx
+
+docker images ls
+echo "=============================push============================================================="
+
 echo $DOCKER_TOKEN | sudo docker login --username $DOCKER_USERNAME --password-stdin #Login Succeeded
 
 export git_sha="${TRAVIS_COMMIT}"
