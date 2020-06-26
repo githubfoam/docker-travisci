@@ -1,8 +1,8 @@
 IMAGE := alpine/fio
 APP:="scripts/usernetes-containerd.sh"
 
-build-deploy-microservices:
-	bash scripts/build-deploy-microservices.sh
+deploy-microservices:
+	bash scripts/deploy-microservices.sh
 build-images:
 	bash scripts/build-images.sh
 push-image:
