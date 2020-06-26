@@ -16,7 +16,6 @@ docker build --build-arg OS_IMAGE=ubuntu:16.04 -t ubuntu1604:ping-v1 . --file $D
 docker images
 docker run -it centos8:ping-v1 -c 2 www.google.com
 
-
 echo "=============================push============================================================="
 docker build -t fabric2:bionic . --file $DOCKERDIR/$DOCKERDIR
 # sudo docker build -t fabric2:bionic . --file $DOCKERDIR/Dockerfile.fabric2
