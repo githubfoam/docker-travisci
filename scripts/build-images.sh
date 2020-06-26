@@ -12,8 +12,8 @@ set -o xtrace
 # export DOCKER_REPO="testrepo"
 
 export DOCKERDIR="dockerfiles"
-export DOCKERFILE="Dockerfile.alpine.fio"
-export DOCKER_IMAGE="alpine"
+export DOCKERFILE="Dockerfile.ubuntu.fio"
+export DOCKER_IMAGE="ubuntu"
 export DOCKER_REPO="fio"
 
 echo "=============================build============================================================="
