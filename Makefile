@@ -1,6 +1,8 @@
 IMAGE := alpine/fio
 APP:="scripts/usernetes-containerd.sh"
 
+build-images:
+	bash scripts/build-images.sh
 push-image:
 	docker push $(IMAGE)
 
