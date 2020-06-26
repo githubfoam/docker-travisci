@@ -8,19 +8,17 @@ set -o xtrace
 export DOCKERDIR="dockerfiles"
 export DOCKERFILE="Dockerfile.ansible"
 export DOCKER_IMAGE="testimage"
+export DOCKERTAG="ubuntu1804:ansible"
 export DOCKER_REPO="testrepo"
 
 echo "=============================build============================================================="
 docker images ls
-
 # docker build --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 . --file $DOCKERDIR/custom.dockerfile
 # docker build --build-arg OS_IMAGE=ubuntu:16.04 -t ubuntu1604:ping-v1 . --file $DOCKERDIR/custom.dockerfile
 # docker run -it centos8:ping-v1 -c 2 www.google.com
 # docker build -t fabric2:bionic . --file $DOCKERDIR/$DOCKERDIR
 # sudo docker build -t fabric2:bionic . --file $DOCKERDIR/Dockerfile.fabric2
-docker build -t ubuntu1804:ansible . --file $DOCKERDIR/$DOCKERDIR
-docker build -t $DOCKER_IMAGE:$TRAVIS_COMMIT . --file=Dockerfile.nginx
-
+docker build -t $DOCKER_IMAGE:$TRAVIS_COMMIT . --file $DOCKERDIR/$DOCKERFILE
 docker images ls
 echo "=============================push============================================================="
 
