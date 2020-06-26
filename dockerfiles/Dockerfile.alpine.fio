@@ -1,0 +1,8 @@
+FROM alpine
+
+RUN apk add --no-cache fio
+
+VOLUME /data
+WORKDIR /data
+
+ENTRYPOINT [ "fio" ]
