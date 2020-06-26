@@ -1,13 +1,23 @@
 ---
-language: ruby
+sudo: required
+notifications:
+  slack:
+    on_failure: always
 
-services: docker
+matrix:
+  fast_finish: true
+  include:
 
-env:
-  - distro: "ubuntu:19.04"
-
-script:
-    - set -x
-    - docker build --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 --file custom.dockerfile .
-    - docker images
-    - docker run -it centos8:ping-v1 -c 2 www.google.com
+    - name: "build Vagrant and Libvirt with KVM or QEMU - bionic"
+      dist: bionic
+      language: python
+      python: 3.7
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+        - pip install -r requirements.txt
+      script:
+          - sudo make build-images
+      after_success:
+        - deactivate
