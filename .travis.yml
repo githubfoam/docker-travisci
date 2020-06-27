@@ -19,6 +19,6 @@ matrix:
         - pip install -r requirements.txt
       script:
           # - sudo make build-images
-          - sudo make build-deploy-microservices
+          - sudo make deploy-microservices
       after_success:
         - deactivate
