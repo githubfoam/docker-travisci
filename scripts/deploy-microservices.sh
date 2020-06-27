@@ -20,6 +20,7 @@ curl http://127.0.0.1:8888
 
 docker-compose down #Stop and remove the services
 
-docker stack deploy  -c docker-compose.prod.yml --with-registry-auth salary-app #deployment
-docker stack services salary-app #Check that it’s running
-docker stack rm salary-app
+#this node is not a swarm manager. Use "docker swarm init" or "docker swarm join" to connect this node to swarm and try again
+# docker stack deploy  -c docker-compose.prod.yml --with-registry-auth salary-app #deployment
+# docker stack services salary-app #Check that it’s running
+# docker stack rm salary-app
