@@ -35,5 +35,6 @@ matrix:
       script:
           # - sudo make build-images
           - sudo make deploy-microservices
+          - travis_retry travis_wait mvn install
       after_success:
         - deactivate

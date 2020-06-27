@@ -37,12 +37,15 @@ cat <<EOT | sudo tee -a /etc/hosts
 EOT
 cat /etc/hosts
 
-cd football && mvn install #Build microservices and Docker containers
+# cd football && mvn install #Build microservices and Docker containers
+#
+# Build and run the demo application:
+# cd football-tests
+# mvn install -DskipTests
+# java -jar target/football-tests-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
-#Build and run the demo application:
-cd football-tests & mvn install -DskipTests
-java -jar target/football-tests-0.0.1-SNAPSHOT-jar-with-dependencies.jar
-# java -jar target/football-tests-0.0.1-SNAPSHOT-jar-with-dependencies.jar 400 #If the default startup timeout (180 sec) will be insufficient, try to increase
-sleep 2m
+#If the default startup timeout (180 sec) will be insufficient, try to increase
+# java -jar target/football-tests-0.0.1-SNAPSHOT-jar-with-dependencies.jar 400
 
-curl http://football-ui:18080/
+# sleep 2m
+# curl http://football-ui:18080/
