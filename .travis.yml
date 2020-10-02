@@ -65,7 +65,7 @@ matrix:
         - pip install -r requirements.txt
       script:
           # - sudo make build-images
-          - sudo make deploy-microservices
+          - sudo make build-powerdns
           # - travis_retry travis_wait mvn install
       after_success:
         - deactivate

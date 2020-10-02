@@ -1,6 +1,9 @@
 IMAGE := alpine/fio
 APP:="scripts/usernetes-containerd.sh"
 
+build-powerdns:
+	bash scripts/build-powerdns.sh
+
 deploy-debian-buster:
 	bash scripts/deploy-debian-buster.sh
 
