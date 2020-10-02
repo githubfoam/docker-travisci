@@ -54,8 +54,8 @@ matrix:
       after_success:
         - deactivate
 
-    # - name: "build microservices w event driven architecture - bionic"
-    #   dist: bionic
+    # - name: "build PowerDNS Recursor - focal"
+    #   dist: focal
     #   language: python
     #   python: 3.7
     #   before_install:
