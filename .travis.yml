@@ -66,12 +66,13 @@ matrix:
       script:
           # - sudo make build-images
           - sudo make deploy-microservices
-          - travis_retry travis_wait mvn install
+          # - travis_retry travis_wait mvn install
       after_success:
         - deactivate
 
     - name: "build PowerDNS Recursor tar ball debian 10 buster on focal"
-      dist: focal
+      # dist: focal #Package 'libvirt-bin' has no installation candidate
+      dist: bionic
       arch: amd64
       language: python
       python: 3.7
