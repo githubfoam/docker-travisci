@@ -1,0 +1,95 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box_check_update = false
+
+  # vbox template for all vagranth instances
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.memory = "512"
+    vb.cpus = 2
+  end
+             config.vm.define "vg-debian-01" do |k8scluster|
+                k8scluster.vm.box = "debian/buster64"
+                <%# k8scluster.vm.box_version = "3.0.28" %>
+                k8scluster.vm.hostname = "vg-debian-01"
+                k8scluster.vm.network "private_network", ip: "192.168.50.14"  
+                <%# It appears your machine doesn't support NFS               %>
+                k8scluster.vm.synced_folder ".", "/vagrant", disabled: true
+                k8scluster.vm.provider "virtualbox" do |vb|
+                    vb.name = "vbox-debian-01"
+                    vb.memory = "4096"
+                end
+
+                k8scluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+
+                # k8scluster.vm.provision "ansible_local" do |ansible|
+                #   # https://www.vagrantup.com/docs/provisioning/ansible_common.html Shared Ansible Options
+                #   ansible.become = true
+                #   ansible.compatibility_mode = "2.0"
+                #   ansible.version = "2.9.9"
+                #   ansible.extra_vars = {
+                #           node_ip: "192.168.50.12"
+                #       }
+                #   ansible.playbook = "provisioning/deploy.yml"
+                # end
+
+              end
+
+             config.vm.define "vg-debian-02" do |k8scluster|
+                k8scluster.vm.box = "debian/stretch64"
+                <%# k8scluster.vm.box_version = "3.0.28" %>
+                k8scluster.vm.hostname = "vg-debian-02"
+                k8scluster.vm.network "private_network", ip: "192.168.50.15"  
+                <%# It appears your machine doesn't support NFS               %>
+                k8scluster.vm.synced_folder ".", "/vagrant", disabled: true
+                k8scluster.vm.provider "virtualbox" do |vb|
+                    vb.name = "vbox-debian-02"
+                    vb.memory = "4096"
+                end
+
+                k8scluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+
+                # k8scluster.vm.provision "ansible_local" do |ansible|
+                #   # https://www.vagrantup.com/docs/provisioning/ansible_common.html Shared Ansible Options
+                #   ansible.become = true
+                #   ansible.compatibility_mode = "2.0"
+                #   ansible.version = "2.9.9"
+                #   ansible.extra_vars = {
+                #           node_ip: "192.168.50.12"
+                #       }
+                #   ansible.playbook = "provisioning/deploy.yml"
+                # end
+
+              end
+
+             config.vm.define "vg-debian-03" do |k8scluster|
+                k8scluster.vm.box = "debian/jessie64"
+                <%# k8scluster.vm.box_version = "3.0.28" %>
+                k8scluster.vm.hostname = "vg-debian-03"
+                k8scluster.vm.network "private_network", ip: "192.168.50.16"  
+                <%# It appears your machine doesn't support NFS               %>
+                k8scluster.vm.synced_folder ".", "/vagrant", disabled: true
+                k8scluster.vm.provider "virtualbox" do |vb|
+                    vb.name = "vbox-debian-03"
+                    vb.memory = "4096"
+                end
+
+                k8scluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+
+                # k8scluster.vm.provision "ansible_local" do |ansible|
+                #   # https://www.vagrantup.com/docs/provisioning/ansible_common.html Shared Ansible Options
+                #   ansible.become = true
+                #   ansible.compatibility_mode = "2.0"
+                #   ansible.version = "2.9.9"
+                #   ansible.extra_vars = {
+                #           node_ip: "192.168.50.12"
+                #       }
+                #   ansible.playbook = "provisioning/deploy.yml"
+                # end
+
+              end
+
+
+end
