@@ -6,25 +6,17 @@ set -o xtrace
 # set -eox pipefail #safety for script
 
 
-# echo "=============================Microservices  with event driven architecture============================================================="
-# #https://github.com/cealer/microservices-demo
-# git clone https://github.com/cealer/microservices-demo.git && cd microservices-demo
-# docker-compose build #Build the services
-# docker-compose ps
-# docker-compose up -d #Run services
-# sleep 1m
-# curl http://localhost:61945/Records
-# curl http://127.0.0.1:61945/Records
-# curl http://localhost:8888 #Open Angular client
-# curl http://127.0.0.1:8888
-#
-# docker-compose down #Stop and remove the services
-
 # https://github.com/Icinga/icinga-vagrant
 echo "=============================Icinga 2 Graphite Grafana Dashing Standalone ============================================================="
+echo "========================================================================================="
+vagrant plugin install vagrant-libvirt #The vagrant-libvirt plugin is required when using KVM on Linux
+vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with different providers
+
+
+vagrant box add "centos/7" --provider=libvirt
 
 git clone https://github.com/Icinga/icinga-vagrant && cd icinga-vagrant
-cd standalone && vagrant up
+cd standalone && vagrant up --provider=libvirt
 
 # In case Dashing is not running, restart it manually
 vagrant ssh -c "sudo systemctl start dashing-icinga2"

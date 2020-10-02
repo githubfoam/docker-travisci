@@ -1,6 +1,18 @@
 IMAGE := alpine/fio
 APP:="scripts/usernetes-containerd.sh"
 
+deploy-graylog :
+	bash scripts/deploy-graylog.sh
+
+deploy-elk :
+	bash scripts/deploy-elk.sh
+
+deploy-influxdb :
+	bash scripts/deploy-influxdb.sh
+
+deploy-icinga-dist:
+	bash scripts/deploy-icinga-dist.sh
+
 deploy-icinga-standalone:
 	bash scripts/deploy-icinga-standalone.sh
 
