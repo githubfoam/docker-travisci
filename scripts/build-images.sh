@@ -12,9 +12,16 @@ set -o xtrace
 # export DOCKER_REPO="testrepo"
 
 export DOCKERDIR="dockerfiles"
-export DOCKERFILE="Dockerfile.ubuntu.fio"
+# export DOCKERFILE="Dockerfile.ubuntu.fio"
+export DOCKERFILE="fio/Dockerfile.ubuntu.fio"
 export DOCKER_IMAGE="ubuntu"
 export DOCKER_REPO="fio"
+
+# for file in $DOCKERDIR/*
+# do
+#   cmd [option] "$file" >> results.out
+#   docker build -t $DOCKER_IMAGE:$TRAVIS_COMMIT . --file $DOCKERDIR/$DOCKERFILE
+# done
 
 echo "=============================build============================================================="
 docker build -t $DOCKER_IMAGE:$TRAVIS_COMMIT . --file $DOCKERDIR/$DOCKERFILE
