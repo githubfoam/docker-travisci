@@ -12,7 +12,7 @@ echo "=============================build PowerDNS Recursor======================
 git clone https://github.com/PowerDNS/pdns.git
 cd pdns/pdns/recursordist/
 autoreconf -vi
-./configure
-make
+# ./configure #configure: error: cannot find Boost headers version >= 1.42.0
+# make
 
 echo "=============================build PowerDNS Recursor finished============================================================="

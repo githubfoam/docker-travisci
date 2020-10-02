@@ -70,6 +70,25 @@ matrix:
       after_success:
         - deactivate
 
+    - name: "deploy jenkins artifactory - focal"
+      dist: focal
+      language: python
+      python: 3.7
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+        - pip install -r requirements.txt
+      script:
+          - docker-compose ps
+          - docker-compose -f scripts/docker-compose.yml build 
+          - docker-compose -f scripts/docker-compose.yml up -d
+          - docker-compose ps
+          - docker-compose stop 
+      after_success:
+        - deactivate
+
+
     - name: "build PowerDNS Recursor tar ball debian 10 buster on focal"
       # dist: focal #Package 'libvirt-bin' has no installation candidate
       dist: bionic
@@ -89,3 +108,4 @@ matrix:
         - deactivate
         - sudo vagrant destroy -f # required to run Vagrantfile template        
         - sudo rm Vagrantfile # required to run Vagrantfile template 
+
