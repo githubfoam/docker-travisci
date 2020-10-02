@@ -1,8 +1,8 @@
 FROM ubuntu:20.10
 
 #FIX;stops asking to configure the tzdata
-# ENV TZ=Europe/Paris
-# RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+ENV TZ=Europe/Paris
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 
 # RUN apt-get -y update && apt-get install -qqy fio \
