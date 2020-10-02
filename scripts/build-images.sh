@@ -12,8 +12,8 @@ set -o xtrace
 # export DOCKER_REPO="testrepo"
 
 export DOCKERDIR="dockerfiles"
-# export DOCKERFILE="Dockerfile.ubuntu.fio"
-export DOCKERFILE="fio/Dockerfile.ubuntu.fio"
+# export DOCKERFILE="fio/Dockerfile.ubuntu.fio" #20.10 focal
+export DOCKERFILE="fio/Dockerfile.ubuntu.1804.fio" 
 export DOCKER_IMAGE="ubuntu"
 export DOCKER_REPO="fio"
 
