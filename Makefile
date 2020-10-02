@@ -1,6 +1,9 @@
 IMAGE := alpine/fio
 APP:="scripts/usernetes-containerd.sh"
 
+deploy-icinga-standalone:
+	bash scripts/deploy-icinga-standalone.sh
+
 build-powerdns:
 	bash scripts/build-powerdns.sh
 
