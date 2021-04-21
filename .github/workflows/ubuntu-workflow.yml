@@ -7,7 +7,28 @@ on:
 
 jobs:
 
-  ubuntu-job:
+# https://spack-tutorial.readthedocs.io/en/latest/tutorial_basics.html
+  ubuntu-latest-spack-job:
+    name: "ubuntu-latest spack job"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+    - name: "build docker file"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        # set -eox pipefail #safety for script
+        cd ~ && whoami 
+        git clone https://github.com/spack/spack ~/spack && cd ~/spack
+        git checkout releases/v0.16.1
+
+
+
+  ubuntu-latest-job:
     name: "ubuntu-latest"
     runs-on: ubuntu-latest
     steps:
@@ -25,10 +46,10 @@ jobs:
         docker images
         docker run -it centos8:ping-v1 -c 2 www.google.com  
     # the input device is not a TTY    
-    - name: "run docker tooling"
-      run: |
-        set -x
-        docker run -it centos8:ping-v1 -c 2 www.google.com    
+    # - name: "run docker tooling"
+    #   run: |
+    #     set -x
+    #     docker run -it centos8:ping-v1 -c 2 www.google.com    
 
 
   ubuntu-1604-job:
