@@ -1,4 +1,4 @@
-name: "os matrix CI workflow"
+name: "os matrix docker CI workflow"
 
 
 on:
