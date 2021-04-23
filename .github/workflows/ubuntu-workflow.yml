@@ -23,14 +23,14 @@ jobs:
         set -o nounset
         set -o xtrace
         # set -eox pipefail #safety for script
-        docker build --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 --file custom.dockerfile .
+        docker build --file custom.dockerfile . --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 
         docker images
         # docker run -it centos8:ping-v1 -c 2 www.google.com  
     # the input device is not a TTY    
     # - name: "run docker tooling"
     #   run: |
     #     set -x
-    #     docker run -it centos8:ping-v1 -c 2 www.google.com    
+    #     docker run -it centos8:ping-v1 -c 2 www.google.com     
 
 
   ubuntu-1604-job:
@@ -70,14 +70,14 @@ jobs:
         set -o nounset
         set -o xtrace
         # set -eox pipefail #safety for script
-        docker build --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 --file custom.dockerfile .
+        docker build --file custom.dockerfile . --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 
         docker images
         # docker run -it centos8:ping-v1 -c 2 www.google.com  
     # the input device is not a TTY    
     # - name: "run docker tooling"
     #   run: |
     #     set -x
-    #     docker run -it centos8:ping-v1 -c 2 www.google.com        
+    #     docker run -it centos8:ping-v1 -c 2 www.google.com          
 
   ubuntu-2004-job:
     name: "ubuntu-20.04"
@@ -93,11 +93,11 @@ jobs:
         set -o nounset
         set -o xtrace
         # set -eox pipefail #safety for script
-        docker build --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 --file custom.dockerfile .
+        docker build --file custom.dockerfile . --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 
         docker images
         # docker run -it centos8:ping-v1 -c 2 www.google.com  
     # the input device is not a TTY    
     # - name: "run docker tooling"
     #   run: |
     #     set -x
-    #     docker run -it centos8:ping-v1 -c 2 www.google.com        
+    #     docker run -it centos8:ping-v1 -c 2 www.google.com         
