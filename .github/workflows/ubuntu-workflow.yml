@@ -7,29 +7,6 @@ on:
 
 jobs:
 
-# https://spack-tutorial.readthedocs.io/en/latest/tutorial_basics.html
-  ubuntu-latest-spack-job:
-    name: "ubuntu-latest spack job"
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: "os fingerprinting"
-      run: hostnamectl status  
-    - name: "deploy stack from git source"
-      run: |
-        set -o errexit
-        set -o pipefail
-        set -o nounset
-        set -o xtrace
-        # set -eox pipefail #safety for script
-        cd ~ && whoami 
-        git clone https://github.com/spack/spack ~/spack && cd ~/spack
-        git checkout releases/v0.16
-        . share/spack/setup-env.sh #source the spack setup script
-        spack list #shows available packages
-        spack list 'py-*' #The spack list command can also take a query string
-        spack install zlib #Installing a package 
-
 
 
   ubuntu-latest-job:
@@ -63,6 +40,21 @@ jobs:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
       run: hostnamectl status  
+    - name: "build docker file"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        # set -eox pipefail #safety for script
+        docker build --file custom.dockerfile . --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 
+        docker images
+        # docker run -it centos8:ping-v1 -c 2 www.google.com  
+    # the input device is not a TTY    
+    # - name: "run docker tooling"
+    #   run: |
+    #     set -x
+    #     docker run -it centos8:ping-v1 -c 2 www.google.com        
 
   ubuntu-1804-job:
     name: "ubuntu-18.04"
@@ -71,6 +63,21 @@ jobs:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
       run: hostnamectl status  
+    - name: "build docker file"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        # set -eox pipefail #safety for script
+        docker build --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 --file custom.dockerfile .
+        docker images
+        # docker run -it centos8:ping-v1 -c 2 www.google.com  
+    # the input device is not a TTY    
+    # - name: "run docker tooling"
+    #   run: |
+    #     set -x
+    #     docker run -it centos8:ping-v1 -c 2 www.google.com        
 
   ubuntu-2004-job:
     name: "ubuntu-20.04"
@@ -79,3 +86,18 @@ jobs:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
       run: hostnamectl status 
+    - name: "build docker file"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        # set -eox pipefail #safety for script
+        docker build --build-arg OS_IMAGE=centos:8 -t centos8:ping-v1 --file custom.dockerfile .
+        docker images
+        # docker run -it centos8:ping-v1 -c 2 www.google.com  
+    # the input device is not a TTY    
+    # - name: "run docker tooling"
+    #   run: |
+    #     set -x
+    #     docker run -it centos8:ping-v1 -c 2 www.google.com        
